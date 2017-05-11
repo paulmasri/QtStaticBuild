@@ -12,7 +12,7 @@
 # )
 # 
 # Invoke with:
-# .\windows-build-qt-static.ps1
+# .\windows-build-qt-static-dynamic.ps1
 # 
 # followed by making the responses:
 # o[ENTER] for open source
@@ -184,7 +184,7 @@ DEFINES += QT_STATIC_BUILD
 
     # Configure, compile and install Qt.
     Push-Location $QtSrcDir
-    & $env:SystemRoot\System32\cmd.exe /c "configure.bat -static -debug-and-release -platform win32-g++ -prefix $QtDir -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -opengl desktop -qt-sql-sqlite -no-openssl -opensource -confirm-license -make libs -nomake tools -nomake examples -nomake tests"
+    & $env:SystemRoot\System32\cmd.exe /c "configure.bat -static -debug-and-release -platform win32-g++ -prefix $QtDir -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -opengl dynamic -qt-sql-sqlite -no-openssl -opensource -confirm-license -make libs -nomake tools -nomake examples -nomake tests"
     mingw32-make -k -j4
     mingw32-make -k install
     Pop-Location
