@@ -12,7 +12,7 @@
 # )
 # 
 # Invoke with:
-# .\windows-build-qt-static-dynamic.ps1
+# .\windows-build-qt-static.ps1
 # 
 # followed by making the responses:
 # o[ENTER] for open source
