@@ -1,6 +1,27 @@
 #-----------------------------------------------------------------------------
+# Paul Masri's modified 'Qt Static for Windows' builder
+# The following configuration snippet appears around line 90. Modify this as
+# necessary
 # 
-#  Copyright (c) 2013, Thierry Lelegard
+# param(
+#     $QtSrcUrl = "http://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.7z",
+#     $QtStaticDir = "C:\Qt\Static",
+#     $QtVersion = "",
+#     $MingwDir = "C:\Qt\Tools\mingw530_32",
+#     [switch]$NoPause = $true
+# )
+# 
+# Invoke with:
+# .\windows-build-qt-static.ps1
+# 
+# followed by making the responses:
+# o[ENTER] for open source
+# y[ENTER] to accept T&C
+# 
+# Based on https://wiki.qt.io/Building_a_static_Qt_for_Windows_using_MinGW
+# 
+#-----------------------------------------------------------------------------
+#  Copyright (c) 2013-2015, Thierry Lelegard
 #  All rights reserved.
 # 
 #  Redistribution and use in source and binary forms, with or without
@@ -75,11 +96,11 @@
 
 [CmdletBinding()]
 param(
-    $QtSrcUrl = "http://download.qt-project.org/official_releases/qt/5.3/5.3.0/single/qt-everywhere-opensource-src-5.3.0.7z",
+    $QtSrcUrl = "http://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.7z",
     $QtStaticDir = "C:\Qt\Static",
     $QtVersion = "",
-    $MingwDir = "",
-    [switch]$NoPause = $false
+    $MingwDir = "C:\Qt\Tools\mingw530_32",
+    [switch]$NoPause = $true
 )
 
 # PowerShell execution policy.
@@ -151,7 +172,7 @@ DEFINES += QT_STATIC_BUILD
     }
 
     # Set a clean path including MinGW.
-    $env:Path = "$MingwDir\bin;$MingwDir\opt\bin;$env:SystemRoot\system32;$env:SystemRoot"
+    $env:Path = "$MingwDir\bin;$MingwDir\opt\bin"
 
     # Force English locale to avoid weird effects of tools localization.
     $env:LANG = "en"
@@ -163,7 +184,7 @@ DEFINES += QT_STATIC_BUILD
 
     # Configure, compile and install Qt.
     Push-Location $QtSrcDir
-    cmd /c "configure.bat -static -debug-and-release -platform win32-g++ -prefix $QtDir `        -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -opengl desktop -qt-sql-sqlite -no-openssl `        -opensource -confirm-license `        -make libs -nomake tools -nomake examples -nomake tests"
+    & $env:SystemRoot\System32\cmd.exe /c "configure.bat -static -debug-and-release -platform win32-g++ -prefix $QtDir -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -opengl desktop -qt-sql-sqlite -no-openssl -opensource -confirm-license -make libs -nomake tools -nomake examples -nomake tests"
     mingw32-make -k -j4
     mingw32-make -k install
     Pop-Location
