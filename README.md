@@ -1,0 +1,1 @@
+# QtStaticBuild
