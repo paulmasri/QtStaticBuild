@@ -4,7 +4,7 @@
 # necessary
 # 
 # param(
-#     $QtSrcUrl = "http://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.7z",
+#     $QtSrcUrl = "http://download.qt.io/archive/qt/5.7/5.7.1/single/qt-everywhere-opensource-src-5.7.1.7z",
 #     $QtStaticDir = "C:\Qt\Static",
 #     $QtVersion = "",
 #     $MingwDir = "C:\Qt\Tools\mingw530_32",
@@ -96,7 +96,7 @@
 
 [CmdletBinding()]
 param(
-    $QtSrcUrl = "http://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.7z",
+    $QtSrcUrl = "http://download.qt.io/archive/qt/5.7/5.7.1/single/qt-everywhere-opensource-src-5.7.1.7z",
     $QtStaticDir = "C:\Qt\Static",
     $QtVersion = "",
     $MingwDir = "C:\Qt\Tools\mingw530_32",
@@ -184,7 +184,7 @@ DEFINES += QT_STATIC_BUILD
 
     # Configure, compile and install Qt.
     Push-Location $QtSrcDir
-    & $env:SystemRoot\System32\cmd.exe /c "configure.bat -static -debug-and-release -platform win32-g++ -prefix $QtDir -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -opengl dynamic -qt-sql-sqlite -no-openssl -opensource -confirm-license -make libs -nomake tools -nomake examples -nomake tests"
+    & $env:SystemRoot\System32\cmd.exe /c "configure.bat -static -release -platform win32-g++ -prefix $QtDir -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -opengl dynamic -qt-sql-sqlite -openssl-linked -opensource -confirm-license -make libs -nomake tools -nomake examples -nomake tests -skip qtandroidextras -skip qtmacextras -skip qtx11extras -skip qtserialbus -skip qtserialport -skip qtdoc OPENSSL_LIBS=`"-lssleay32 -llibeay32 -lgdi32 -lUser32`" -L C:\OpenSSL-Win32 -L C:\OpenSSL-Win32\lib -L C:\OpenSSL-Win32\lib\MinGW -I C:\OpenSSL-Win32\include"
     mingw32-make -k -j4
     mingw32-make -k install
     Pop-Location
