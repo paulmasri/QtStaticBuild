@@ -156,6 +156,10 @@ function Main
     # Expand archives if not yet done
     Expand-Archive $QtStaticDir\src\$QtSrcFileName $QtStaticDir\src $QtSrcDir
 
+    # Pause in case we want to copy the src folder to another folder
+    [System.Console]::Beep()
+    Read-Host "Download & extract complete. Press ENTER to continue"
+
     # Patch Qt's mkspecs for static build.
     $File = "$QtSrcDir\qtbase\mkspecs\win32-g++\qmake.conf"
     if (-not (Select-String -Quiet -SimpleMatch -CaseSensitive "# [QT-STATIC-PATCH]" $File)) {
