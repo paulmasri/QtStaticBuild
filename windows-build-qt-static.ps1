@@ -4,7 +4,7 @@
 # necessary
 # 
 # param(
-#     $QtSrcUrl = "http://download.qt.io/archive/qt/5.7/5.7.1/single/qt-everywhere-opensource-src-5.7.1.7z",
+#     $QtSrcUrl = "http://download.qt.io/archive/qt/5.11/5.11.1/single/qt-everywhere-src-5.11.1.zip",
 #     $QtStaticDir = "C:\Qt\Static",
 #     $QtVersion = "",
 #     $MingwDir = "C:\Qt\Tools\mingw530_32",
