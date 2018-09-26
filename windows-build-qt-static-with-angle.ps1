@@ -4,7 +4,7 @@
 # necessary
 # 
 # param(
-#     $QtSrcUrl = "http://download.qt.io/archive/qt/5.11/5.11.1/single/qt-everywhere-src-5.11.1.zip",
+#     $QtSrcUrl = "http://download.qt.io/archive/qt/5.11/5.11.2/single/qt-everywhere-src-5.11.2.zip",
 #     $QtStaticDir = "C:\Qt\Static-ANGLE",
 #     $QtVersion = "",
 #     $MingwDir = "C:\Qt\Tools\mingw530_32",
@@ -96,7 +96,7 @@
 
 [CmdletBinding()]
 param(
-    $QtSrcUrl = "http://download.qt.io/archive/qt/5.11/5.11.1/single/qt-everywhere-src-5.11.1.zip",
+    $QtSrcUrl = "http://download.qt.io/archive/qt/5.11/5.11.2/single/qt-everywhere-src-5.11.2.zip",
     $QtStaticDir = "C:\Qt\Static-ANGLE",
     $QtVersion = "",
     $MingwDir = "C:\Qt\Tools\mingw530_32",
